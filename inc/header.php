@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title><?= $title ?></title>
   </head>
   <body>
     <div id="wrapper">
-      <header>
-      </header>
+      <div class="wrap">
+        <header>
+          <h1><?= $titreH1 ?></h1>
+        </header>
+      </div>
       <div id="content">
