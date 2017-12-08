@@ -28,7 +28,8 @@ include('inc/header.php');?>
             <div class="">
               <p><a href="index.php">retour aux films</a></p>
             </div>
-
+                <img src="posters/<?php echo $movie['id']; ?>.jpg" alt="jaquette du film" />
+                
                 <p>title : <?php echo $movie['title']; ?></p>
                 <p>year : <?php echo $movie['year']; ?></p>
                 <p>genre : <?php echo $movie['genre']; ?></p>
