@@ -1,8 +1,11 @@
+<?php include('inc/fonction.php'); ?>
+<?php include('inc/pdo.php'); ?>
 <?php
-// $title = '';
-// $titreH1 = '';
-include('inc/fonction.php');
-include('inc/pdo.php');
+//declare ma requete
+$sql= "SELECT * FROM movies_full ORDER BY rand() LiMIT 10 ";
+$query = $pdo->prepare($sql);
+$query->execute();
+$idMovies = $query->fetchall();
 
 if (!empty($_POST['submit'])) {
 
@@ -17,7 +20,12 @@ if (!empty($_POST['submit'])) {
   $sql = "SELECT * FROM movies_full WHERE year BETWEEN $years1 AND $years2 AND $popularity1 AND $popularity2"
 }
 ?>
+<?php 
+// debug($idMovies);
 
+
+
+ ?>
 <?php include('inc/header.php'); ?>
 <h1>Accueil</h1>
 <!--  1888/1928   1928/1968  1968/1998  1998/2012  -->
@@ -148,5 +156,26 @@ $years = explode('-', $years);
 // echo $popularity[0] . '<br>';
 // echo $popularity[1] . '<br>';
 ?>
+
+
+
+
+
+
+
+<?php foreach ($idMovies as $idMovie) {?>
+  <?php $imageMovie = 'posters/' . $idMovie['id'] . '.jpg' ?>
+
+  <?php if (is_file($imageMovie)){?>
+    <img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt="">
+  <?php }else { ?>
+  <?php } ?>
+
+
+ <?php } ?>
+<br>
+<a href="index.php"> Plus de films</a>
+
+
 
 <?php include('inc/footer.php'); ?>
