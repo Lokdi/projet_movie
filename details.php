@@ -5,7 +5,7 @@ include('inc/fonction.php');
 if (!empty($_GET['slug'])) {
     $slug = $_GET['slug'];
 } else {
-    die('4049');   //sinon si l'slug n'existe pas ou n'est pas valide  404
+    die('404');   //sinon si l'slug n'existe pas ou n'est pas valide  404
 }
     $sql = "SELECT * FROM movies_full WHERE slug = :slug";
     $query = $pdo->prepare($sql); //je les prepares
@@ -15,7 +15,7 @@ if (!empty($_GET['slug'])) {
     $movie = $query->fetch();
 
 if(empty($movie)) {
-    die('4042');
+    die('404');
 }
 
 
@@ -45,7 +45,7 @@ include('inc/header.php');?>
                 <p>poster_flag : <?php echo $movie['poster_flag']; ?></p>
 
             </div>
-            
+
 
 
 
