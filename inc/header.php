@@ -10,7 +10,7 @@
     <div id="wrapper">
       <div class="wrap">
         <header>
-          <h1><?= $titreH1 ?></h1>
+
         </header>
       </div>
       <div id="content">
