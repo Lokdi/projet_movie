@@ -9,116 +9,113 @@ $idMovies = $query->fetchall();
 
 if (!empty($_POST['submit'])) {
 
-  $years1 = $years[0];
-  $years2 = $years[1];
+  if (!empty($_POST['checkbox']) && !empty($_POST['popularity']) && !empty($_POST['years'])) {
+    $type = $_POST['checkbox'];
+    $popularity = $_POST['popularity'];
+    $years = $_POST['years'];
 
-  $popularity1 = $popularity[0];
-  $popularity2 = $popularity[1];
+    $popularity = explode('-', $popularity);
+    $years = explode('-', $years);
 
-  $type = $_POST['type']
+    $years1 = $years[0];
+    $years2 = $years[1];
 
-  $sql = "SELECT * FROM movies_full WHERE year BETWEEN $years1 AND $years2 AND $popularity1 AND $popularity2"
+    $popularity1 = $popularity[0];
+    $popularity2 = $popularity[1];
+
+    $sql = "SELECT * FROM movies_full WHERE genres LIKE :type AND year BETWEEN :years1 AND :years2 AND  popularity BETWEEN :popularity1 AND :popularity2";
+    $requete = $pdo->prepare($sql); // prepare requete
+    $requete->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
+    $requete->bindValue(':years1', $years1, PDO::PARAM_INT);
+    $requete->bindValue(':years2', $years2, PDO::PARAM_INT);
+    $requete->bindValue(':popularity1', $popularity1, PDO::PARAM_INT);
+    $requete->bindValue(':popularity2', $popularity2, PDO::PARAM_INT);
+    $requete->execute(); // execute requete
+    $films = $requete->fetchAll(); //On recupere sous forme de tableau multidimensionel
+
+    debug($films);
+  }
 }
+
+
+// echo $_POST['checkbox'];
 ?>
-<?php 
-// debug($idMovies);
 
 
-
- ?>
 <?php include('inc/header.php'); ?>
 <h1>Accueil</h1>
-<!--  1888/1928   1928/1968  1968/1998  1998/2012  -->
-
-<!-- for ($i=1928; $i < 1968 ; $i++) {
-  # code...
-}
-
-for ($i=1968; $i < 1998 ; $i++) {
-  # code...
-}
-
-for ($i=1998; $i < 2012 ; $i++) {
-  # code...
-}
-?> -->
 <form action="" method="post">
 <table id="tab1">
   <tr>
     <td>
-      <style media="screen">
-        /*label{
-          display: block;
-        }*/
-      </style>
       <label for="checkAll">Tout cocher/décocher</label>
       <input type="checkbox" name="checkAll" id="checkAll">
 
       <label for="action">Action</label>
-      <input type="checkbox" name="action" id="action" value="action">
+      <input type="checkbox" name="checkbox" id="action" value="action">
 
       <label for="adventure">Adventure</label>
-      <input type="checkbox" name="adventure" id="adventure" value="adventure">
+      <input type="checkbox" name="checkbox" id="adventure" value="adventure">
 
       <label for="animation">Animation</label>
-      <input type="checkbox" name="animation" id="animation" value="animation">
+      <input type="checkbox" name="checkbox" id="animation" value="animation">
 
       <label for="biography">Biography</label>
-      <input type="checkbox" name="biography" id="biography" value="biography">
+      <input type="checkbox" name="checkbox" id="biography" value="biography">
 
       <label for="comedy">Comedy</label>
-      <input type="checkbox" name="comedy" id="comedy" value="comedy">
+      <input type="checkbox" name="checkbox" id="comedy" value="comedy">
 
       <label for="crime">Crime</label>
-      <input type="checkbox" name="crime" id="crime" value="crime">
+      <input type="checkbox" name="checkbox" id="crime" value="crime">
 
       <label for="documentary">Documentary</label>
-      <input type="checkbox" name="documentary" id="documentary" value="documentary">
+      <input type="checkbox" name="checkbox" id="documentary" value="documentary">
 
       <label for="drama">Drama</label>
-      <input type="checkbox" name="drama" id="drama" value="drama">
+      <input type="checkbox" name="checkbox" id="drama" value="drama">
 
       <label for="family">Family</label>
-      <input type="checkbox" name="family" id="family" value="family">
+      <input type="checkbox" name="checkbox" id="family" value="family">
 
       <label for="fantasy">Fantasy</label>
-      <input type="checkbox" name="fantasy" id="fantasy" value="fantasy">
+      <input type="checkbox" name="checkbox" id="fantasy" value="fantasy">
 
       <label for="film_noir">Film-Noir</label>
-      <input type="checkbox" name="film_noir" id="film_noir" value="film_noir">
+      <input type="checkbox" name="checkbox" id="film_noir" value="film_noir">
 
       <label for="history">History</label>
-      <input type="checkbox" name="history" id="history" value="history">
+      <input type="checkbox" name="checkbox" id="history" value="history">
 
       <label for="horror">Horror</label>
-      <input type="checkbox" name="horror" id="horror" value="horror">
+      <input type="checkbox" name="checkbox" id="horror" value="horror">
 
       <label for="musical">Musical</label>
-      <input type="checkbox" name="musical" id="musical" value="musical">
+      <input type="checkbox" name="checkbox" id="musical" value="musical">
 
       <label for="mystery">Mystery</label>
-      <input type="checkbox" name="mystery" id="mystery" value="mystery">
+      <input type="checkbox" name="checkbox" id="mystery" value="mystery">
 
       <label for="short">Short</label>
-      <input type="checkbox" name="short" id="short" value="short">
+      <input type="checkbox" name="checkbox" id="short" value="short">
 
       <label for="sci_fi">Sci-Fi</label>
-      <input type="checkbox" name="sci_fi" id="sci_fi" value="sci_fi">
+      <input type="checkbox" name="checkbox" id="sci_fi" value="sci_fi">
 
       <label for="sport">Sport</label>
-      <input type="checkbox" name="sport" id="sport" value="sport">
+      <input type="checkbox" name="checkbox" id="sport" value="sport">
 
       <label for="thriller">Thriller</label>
-      <input type="checkbox" name="thriller" id="thriller" value="thriller">
+      <input type="checkbox" name="checkbox" id="thriller" value="thriller">
 
       <label for="romance">Romance</label>
-      <input type="checkbox" name="romance" id="romance" value="romance">
+      <input type="checkbox" name="checkbox" id="romance" value="romance">
 
       <label for="war">War</label>
-      <input type="checkbox" name="war" id="war" value="war">
+      <input type="checkbox" name="checkbox" id="war" value="war">
 
       <label for="western">Western</label>
-      <input type="checkbox" name="western" id="western" value="western">
+      <input type="checkbox" name="checkbox" id="western" value="western">
     </td>
   </tr>
 </table>
@@ -147,11 +144,6 @@ Popularité :
 // echo  $_POST['date1'] .'-'. $_POST['date2'];
 // echo $_POST['popularity'];
 
-$popularity = $_POST['popularity'];
-$years = $_POST['years'];
-
-$popularity = explode('-', $popularity);
-$years = explode('-', $years);
 
 // echo $popularity[0] . '<br>';
 // echo $popularity[1] . '<br>';
