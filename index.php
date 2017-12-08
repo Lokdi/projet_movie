@@ -2,42 +2,67 @@
 <?php include('inc/pdo.php'); ?>
 <?php
 //declare ma requete
-$sql= "SELECT * FROM movies_full ORDER BY rand() LiMIT 10 ";
-$query = $pdo->prepare($sql);
-$query->execute();
-$idMovies = $query->fetchall();
+
 
 if (!empty($_POST['submit'])) {
 
-  if (!empty($_POST['checkbox']) && !empty($_POST['popularity']) && !empty($_POST['years'])) {
+  if (!empty($_POST['checkbox'])) {
+
     $type = $_POST['checkbox'];
-    $popularity = $_POST['popularity'];
-    $years = $_POST['years'];
 
-    $popularity = explode('-', $popularity);
-    $years = explode('-', $years);
-
-    $years1 = $years[0];
-    $years2 = $years[1];
-
-    $popularity1 = $popularity[0];
-    $popularity2 = $popularity[1];
-
-    $sql = "SELECT * FROM movies_full WHERE genres LIKE :type AND year BETWEEN :years1 AND :years2 AND  popularity BETWEEN :popularity1 AND :popularity2";
-    $requete = $pdo->prepare($sql); // prepare requete
-    $requete->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
-    $requete->bindValue(':years1', $years1, PDO::PARAM_INT);
-    $requete->bindValue(':years2', $years2, PDO::PARAM_INT);
-    $requete->bindValue(':popularity1', $popularity1, PDO::PARAM_INT);
-    $requete->bindValue(':popularity2', $popularity2, PDO::PARAM_INT);
-    $requete->execute(); // execute requete
-    $films = $requete->fetchAll(); //On recupere sous forme de tableau multidimensionel
-
-    debug($films);
+    $sql= "SELECT * FROM movies_full WHERE 1 = 1 AND genres LIKE '$type'";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $idMovies = $query->fetchAll();
   }
+  // if (!empty($_POST['popularity'])) {
+  //
+  //     $popularity = $_POST['popularity'];
+  //     $popularity = explode('-', $popularity);
+  //
+  //     $popularity1 = $popularity[0];
+  //     $popularity2 = $popularity[1];
+  //
+  //     $sql .= " AND popularity BETWEEN :popularity1 AND :popularity2";
+  //     $query = $pdo->prepare($sql);
+  //     $query->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
+  //     $query->bindValue(':popularity1', $popularity1, PDO::PARAM_INT);
+  //     $query->bindValue(':popularity2', $popularity2, PDO::PARAM_INT);
+  //     $query->execute();
+  //     $idMovies = $query->fetchAll();
+  //   }
+  //
+  // if (!empty($_POST['popularity']) && !empty($_POST['years'])) {
+  //   $years = $_POST['years'];
+  //
+  //   $years = explode('-', $years);
+  //
+  //   $years1 = $years[0];
+  //   $years2 = $years[1];
+  //
+  //   $popularity1 = $popularity[0];
+  //   $popularity2 = $popularity[1];
+  //
+  //   $sql = "SELECT * FROM movies_full WHERE genres LIKE :type AND year BETWEEN :years1 AND :years2 AND  popularity BETWEEN :popularity1 AND :popularity2";
+  //   $requete = $pdo->prepare($sql); // prepare requete
+  //   $requete->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
+  //   $requete->bindValue(':years1', $years1, PDO::PARAM_INT);
+  //   $requete->bindValue(':years2', $years2, PDO::PARAM_INT);
+  //   $requete->bindValue(':popularity1', $popularity1, PDO::PARAM_INT);
+  //   $requete->bindValue(':popularity2', $popularity2, PDO::PARAM_INT);
+  //   $requete->execute(); // execute requete
+  //   $films = $requete->fetchAll(); //On recupere sous forme de tableau multidimensionel
+  //
+  //   // debug($films);
+  // }
+  // $sql .= "ORDER BY rand() LIMIT 10";
+} else {
+  $sql= "SELECT * FROM movies_full ORDER BY rand() LIMIT 10 ";
+  $query = $pdo->prepare($sql);
+  $query->execute();
+  $idMovies = $query->fetchall();
 }
-
-
+// debug($)
 // echo $_POST['checkbox'];
 ?>
 
@@ -140,6 +165,7 @@ Popularité :
 <input type="submit" name="submit" value="Envoyer">
 </form>
 
+
 <?php
 // echo  $_POST['date1'] .'-'. $_POST['date2'];
 // echo $_POST['popularity'];
@@ -156,10 +182,7 @@ Popularité :
 
 
 <?php foreach ($idMovies as $idMovie) {?>
-    <a href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt="Image du film : <?php echo $idMovie['title'] ;?> . l'année du film : <?php echo $idMovie['year'] ;?>"></a>
-
-
-
+    <a href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt=""></a>
  <?php } ?>
 <br>
 <a href="index.php"> Plus de films</a>
