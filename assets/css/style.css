@@ -1,0 +1,19 @@
+@import url("normalize.css") screen;
+*{
+  text-decoration: none;
+}
+#wrapper{
+  max-width: 1900px;
+  width: 100%;
+  margin: 0 auto;
+  /*background: url('../img/dark-metal-texture.jpg');*/
+  /*background-repeat: no-repeat;
+  background-size: cover;*/
+  background: rgb(112, 112, 112);
+}
+#content{
+  max-width: 1800px;
+  width: 100%;
+  margin: 0 auto;
+
+}
