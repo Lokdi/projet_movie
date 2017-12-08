@@ -156,7 +156,7 @@ Popularité :
 
 
 <?php foreach ($idMovies as $idMovie) {?>
-    <a href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt=""></a>
+    <a href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt="Image du film : <?php echo $idMovie['title'] ;?> . l'année du film : <?php echo $idMovie['year'] ;?>"></a>
 
 
 
