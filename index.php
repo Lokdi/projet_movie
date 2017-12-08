@@ -164,12 +164,8 @@ $years = explode('-', $years);
 
 
 <?php foreach ($idMovies as $idMovie) {?>
-  <?php $imageMovie = 'posters/' . $idMovie['id'] . '.jpg' ?>
+    <a href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt=""></a>
 
-  <?php if (is_file($imageMovie)){?>
-    <img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt="">
-  <?php }else { ?>
-  <?php } ?>
 
 
  <?php } ?>
