@@ -5,7 +5,7 @@ include('inc/fonction.php');
 if (!empty($_GET['slug'])) {
     $slug = $_GET['slug'];
 } else {
-    die('4049');   //sinon si l'slug n'existe pas ou n'est pas valide  404
+    die('404');   //sinon si l'slug n'existe pas ou n'est pas valide  404
 }
     $sql = "SELECT * FROM movies_full WHERE slug = :slug";
     $query = $pdo->prepare($sql); //je les prepares
@@ -15,7 +15,7 @@ if (!empty($_GET['slug'])) {
     $movie = $query->fetch();
 
 if(empty($movie)) {
-    die('4042');
+    die('404');
 }
 
 
@@ -24,15 +24,14 @@ include('inc/header.php');?>
 
         <div class="wrap">
 
-            
+
             <div class="">
               <p><a href="index.php">retour aux films</a></p>
             </div>
-
-
+            <img src="posters/<?php echo $movie['id']; ?>.jpg" alt="jaquette du film" />
             <p>title : <?php echo $movie['title']; ?></p>
             <p>year : <?php echo $movie['year']; ?></p>
-            <p>genre : <?php echo $movie['genre']; ?></p>
+            <p>genre : <?php echo $movie['genres']; ?></p>
             <p>plot : <?php echo $movie['plot']; ?></p>
             <p>directors : <?php echo $movie['directors']; ?></p>
             <p>cast : <?php echo $movie['cast']; ?></p>
