@@ -1,9 +1,39 @@
 <?php include('inc/fonction.php'); ?>
-<?php $title = ''; ?>
-<?php $titreH1 = ''; ?>
-<?php include('inc/data.php') ?>
+<?php include('inc/pdo.php'); ?>
+<?php
+//declare ma requete
+$sql= "SELECT * FROM movies_full ORDER BY rand() LiMIT 10 ";
+$query = $pdo->prepare($sql);
+$query->execute();
+$idMovies = $query->fetchall();
 
 
+// debug($idMovies);
+
+
+
+ ?>
 <?php include('inc/header.php'); ?>
+
+
+
+
+
+
+
+<?php foreach ($idMovies as $idMovie) {?>
+  <?php $imageMovie = 'posters/' . $idMovie['id'] . '.jpg' ?>
+
+  <?php if (is_file($imageMovie)){?>
+    <img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt="">
+  <?php }else { ?>
+  <?php } ?>
+
+
+ <?php } ?>
+<br>
+<a href="index.php"> Plus de films</a>
+
+
 
 <?php include('inc/footer.php'); ?>
