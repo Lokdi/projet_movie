@@ -220,15 +220,18 @@ div.titlefilm {
   font-family: 'Playfair Display SC', serif;
   font-size: 1em;
   text-align: center;
-  /*line-height: 50px;*/
-  /*vertical-align: middle;*/
   color: white;
+  display: flex; /* contexte sur le parent */
+  flex-direction: column; /* direction d'affichage verticale */
+  justify-content: center; /* alignement vertical */
+  border-top: 1px solid grey;
 }
 
 div.titlefilm p {
   text-decoration: none;
   vertical-align: middle;
   color: white;
+  padding: 4px;
 }
 
 div.titlefilm a {
