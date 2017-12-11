@@ -14,14 +14,23 @@
         <div id="logo">
           <a href="index.php"><img src="./assets/img/logo.png" alt="Page d'accueil" /></a>
         </div>
-        <nav id="">
+        <nav id="navigation">
           <ul>
             <li><a href="index.php" alt="Accueil">Accueil</a></li>
             <li><a href="inscription.php" alt="Inscription">Inscription</a></li>
             <li><a href="connection.php" alt="Connexion">Connexion</a></li>
+
+            <?php // on affiche le filtre uniquement sur la page d'accueil
+            $page = basename($_SERVER["PHP_SELF"]); // echo $page;
+            if (!empty($page) && $page == 'index.php' ):
+            ?>
+            <li><a href="#formfiltrage" class="nohidden" alt="Filtrer par genre, date et popularité">Filtrer</a></li>
+            <?php endif; ?>
+
             <?php if (isLogged()): ?>
               <li><a href="a_voir.php" alt="Liste des films a voir">Liste des films a voir</a></li>
             <?php endif; ?>
+
           </ul>
           <form id="recherche" method="post" action="index.php">
             <input id="search" class="loupe" name="search" type="text" placeholder="Recherche..." required />

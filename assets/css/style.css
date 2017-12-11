@@ -41,7 +41,7 @@ nav {
 nav ul {
   display: flex;
   float: left;
-  width: 330px;
+  /*width: 330px;*/
   height: 40px;
   /*line-height: 40px;*/
   flex-direction: row;
@@ -83,6 +83,13 @@ nav ul li a {
   color: white;
   font-family: 'Montserrat', Arial, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, sans-serif;
   /* text-transform: uppercase; */
+}
+
+#filtre {
+  width: 70px;
+  height: 25px;
+  display: inline-block;
+  float: right;
 }
 
 a {
