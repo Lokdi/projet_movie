@@ -16,8 +16,12 @@
     <script type="text/javascript" src="assets/js/rating.js"></script> -->
 
 
-    <!-- <script type="text/javascript" src="assets/js/main.js">
-    // var btn = document.querySelector('input');
+
+
+
+
+
+    <!-- // var btn = document.querySelector('input');
     // var txt = document.querySelector('p');
     //
     // btn.addEventListener('click', updateBtn);
@@ -30,10 +34,19 @@
     //         btn.value = 'Démarrer la machine';
     //         txt.textContent = 'La machine est arrêtée.';
     //     }
-    // } -->
+
+    // }
 
 
-<script>
+
+
+    // } --> 
+
+
+
+<script type="text/javascript">
+
+
     $( document ).ready(function() {
         console.log( "ready!" );
     $("#tab1 #checkAll").click(function () {
