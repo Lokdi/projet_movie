@@ -1,5 +1,6 @@
 <?php
 include('inc/pdo.php');
+include('inc/fonctions.php');
 session_start();
 if (!empty($_COOKIE['reconnect']) && !isset($_SESSION['reconnect'])) {
   // debug($_COOKIE);
