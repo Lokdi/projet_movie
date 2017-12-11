@@ -59,16 +59,28 @@ if (!empty($_POST['submit'])) {
       }
 
       $sql .= "ORDER BY rand() LIMIT 10";
+
+} elseif (!empty($_POST['search'])) {
+  $search = trim($_POST['search']);
+
+  $sql= "SELECT * FROM movies_full WHERE 1 = 1
+        AND title LIKE '%".trim($search)."%'
+        OR directors LIKE '%".trim($search)."%'
+        OR cast LIKE '%".trim($search)."%'
+        ORDER BY rand() LIMIT 8";
+  // debug($idMovies);
+
+// si pas de recherche, ni de recherche avancée, alors on fait une requête générale
 } else {
   $sql= "SELECT * FROM movies_full ORDER BY rand() LIMIT 8 ";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $idMovies = $query->fetchall();
+
 }
 
 $query = $pdo->prepare($sql);
 $query->execute();
-$idMovies = $query->fetchAll();
+$idMovies = $query->fetchall();
+// debug($)
+// echo $_POST['checkbox'];
 // debug($)
 // echo $_POST['checkbox'];
 
@@ -125,10 +137,10 @@ $idMovies = $query->fetchAll();
        <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
          <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
          <img width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
-         <h4><?php echo $idMovie['title'] ?></h4>
+         <p class="titlefilm"><?php echo $idMovie['title'] ?></p>
          <?php } else  { ?>
          <img width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
-         <h4><?= $idMovie['title'] ?></h4>
+         <p class="titlefilm"><?= $idMovie['title'] ?></p>
          <?php } ?>
        </a>
     </div>
