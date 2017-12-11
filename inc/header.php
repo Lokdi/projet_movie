@@ -17,7 +17,7 @@
           <ul>
             <li><a href="index.php" alt="Accueil">Accueil</a></li>
             <li><a href="inscription.php" alt="Inscription">Inscription</a></li>
-            <li><a href="connexion.php" alt="Connexion">Connexion</a></li>
+            <li><a href="connection.php" alt="Connexion">Connexion</a></li>
           </ul>
           <form id="recherche" method="post" action="index.php">
             <input id="search" class="loupe" name="search" type="text" placeholder="Recherche..." required />
