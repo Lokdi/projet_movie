@@ -24,6 +24,11 @@ $("#tab1 #checkAll").click(function () {
       });
   }
 });
+
+$( ".nohidden" ).click(function() {
+  $( ".hidden" ).toggle( "slow" );
+});
+
 });
 
 
