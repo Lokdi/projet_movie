@@ -1,6 +1,5 @@
 <?php
-
-include('inc/pdo.php');
+include('conf.php');
 include('inc/fonctions.php');
 // session_start();
 

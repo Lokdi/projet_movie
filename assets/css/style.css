@@ -2,6 +2,9 @@
 *{
   text-decoration: none;
 }
+.hidden{
+  display:none;
+}
 
 body {
   background: rgb(46,7,6) url('../img/motif-rideaux-cinema-24b.png') repeat-x ;
