@@ -75,11 +75,11 @@ $idMovies = $query->fetchAll();
 
            <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
            <img class="imagefilm" width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
-           <div class="titlefilm"><div><?php echo $idMovie['title'] ?></div></div>
+           <div class="titlefilm"><p><?php echo $idMovie['title'] ?></p></div>
 
            <?php } else  { ?>
            <img class="imagefilm" width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
-           <div class="titlefilm"><div><?= $idMovie['title'] ?></div></div>
+           <div class="titlefilm"><p><?= $idMovie['title'] ?></p></div>
            <?php } ?>
          </a>
       </div>
