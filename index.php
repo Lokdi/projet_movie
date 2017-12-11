@@ -70,17 +70,19 @@ $idMovies = $query->fetchAll();
   <div id="listefilms">
 
     <?php foreach ($idMovies as $idMovie) { ?>
-    <div class="movie">
-       <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
-         <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
-         <img width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
-         <p class="titlefilm"><?php echo $idMovie['title'] ?></p>
-         <?php } else  { ?>
-         <img width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
-         <p class="titlefilm"><?= $idMovie['title'] ?></p>
-         <?php } ?>
-       </a>
-    </div>
+      <div class="movie">
+         <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
+
+           <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
+           <img class="imagefilm" width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
+           <div class="titlefilm"><div><?php echo $idMovie['title'] ?></div></div>
+
+           <?php } else  { ?>
+           <img class="imagefilm" width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
+           <div class="titlefilm"><div><?= $idMovie['title'] ?></div></div>
+           <?php } ?>
+         </a>
+      </div>
  <?php } ?>
 
   </div>
