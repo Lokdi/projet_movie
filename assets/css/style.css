@@ -2,8 +2,89 @@
 *{
   text-decoration: none;
 }
-#wrapper{
+
+body {
+  background: rgb(46,7,6) url('../img/motif-rideaux-cinema-24b.png') repeat-x ;
+  font-family: 'Playfair Display', serif;
+}
+
+header {
+  height: 96px;
   max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+div#header {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#logo {
+  width: 527px;
+  height: 96px;
+  float: left;
+  /*margin-right: 20px;*/
+}
+
+nav {
+  float: right;
+  /*margin-right: 50px;*/
+  width: 673px;
+  height: 40px;
+}
+nav ul {
+  display: flex;
+  float: left;
+  width: 330px;
+  height: 40px;
+  /*line-height: 40px;*/
+  flex-direction: row;
+  justify-content: left;
+  align-items: baseline;
+  /* margin: auto 0px; */
+  padding:0px;
+  margin-top: 13px;
+}
+nav ul li {
+  float: left;
+  height: 25px;
+  background: #ffcc66 url('../img/motif-fd-btn-nav.png') repeat-x ;
+  padding: 0px 10px;
+  margin-right: 10px;
+  list-style-type: none;
+  border-radius: 0.3em;
+}
+
+nav ul li:hover {
+  background: #0e9700;
+}
+
+nav ul li:active {
+  background: #c60000;
+}
+
+nav ul li:visited {
+  background: #c60000;
+}
+
+nav ul li a {
+  display: block;
+  font-size: 1em;
+  text-align: center;
+  padding-top: 3px;
+  color: white;
+  font-family: 'Montserrat', Arial, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, sans-serif;
+  /* text-transform: uppercase; */
+}
+
+a {
+  text-decoration: none;
+}
+
+#wrapper {
+  max-width: 980px;
   width: 100%;
   margin: 0 auto;
   /*background: url('../img/dark-metal-texture.jpg');*/
@@ -11,33 +92,117 @@
   background-size: cover;*/
   background: rgba(22, 81, 135, 0.75);
 }
-#content{
+
+#content {
   max-width: 1800px;
   width: 100%;
   margin: 0 auto;
-
 }
-h1{
+
+h1 {
   text-align: center;
   font-size: 3em;
   text-transform: uppercase;
   padding-top : 30px;
   margin-bottom: 20px;
 }
+
 .form {
   max-width: 970px;
   width: 100%;
   margin: 30px auto;
 }
+
 input {
   margin-bottom: 20px;
 }
-label{
+
+label {
   color: white;
   text-transform: uppercase;
   font-size: 0.8em;
   margin-left: 40px;
 }
+
 .linkImage {
   margin: auto;
+}
+
+form#recherche {
+display: flex;
+flex-direction: row;
+justify-content: left;
+width:160px;
+height:25px;
+margin-top: 13px;
+background:white;
+box-shadow:1px 1px 2px rgba(0,0,0,.3) inset;
+border-radius:0.2em;
+}
+
+#recherche .loupe {
+background: url('../img/loupe.png') no-repeat 4px 0;
+opacity: 0.4;
+width: 24px;
+}
+
+#recherche input {
+outline: 0;
+border: 0;
+margin: 0;
+height: 25px;
+float: left;
+}
+
+#recherche input[type=text] {
+font:300 12px 'Montserrat', Arial, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, 'Lucida Grande', sans-serif;
+width: 130px;
+padding:0 5px 0 30px;
+color:black;
+}
+
+#recherche input[type=submit] {
+font:500 12px 'Montserrat', Arial, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, 'Lucida Grande', sans-serif;
+width: 30px;
+/*padding:0 5px 0 30px;*/
+color:white;
+background: #0e9700;
+outline: 0;
+border-style: solid;
+border-width: thin;
+border-color: white;
+}
+
+#recherche input[type=submit]:hover {
+  background: #c60000;
+  cursor: pointer;
+}
+
+#ecranfilms {
+  width: 980px;
+  height: 688px;
+  background-color: black;
+  border-width: 5px;
+  border-color: #ffcc66;
+  border-style: solid;
+}
+
+#listefilms {
+  width: 960px;
+  /*height: 688px;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: black url('../img/fd-ecran-deg-jaune-noir.png') repeat-x ;
+  margin: 0 auto;
+
+}
+
+footer {
+  width: 100%;
+  height: 116px;
+  background: black url('../img/motif-fauteuils.png') repeat-x ;
+  text-align: center;
+  padding-top: 20px;
 }
