@@ -1,7 +1,7 @@
 <?php
 include('conf.php');
 include('inc/pdo.php');
-include('inc/fonctions.php');
+
 
 
 

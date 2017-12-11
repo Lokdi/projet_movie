@@ -8,8 +8,12 @@
     <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 
-    <script type="text/javascript" src="assets/js/main.js">
-    // var btn = document.querySelector('input');
+
+
+
+
+
+    <!-- // var btn = document.querySelector('input');
     // var txt = document.querySelector('p');
     //
     // btn.addEventListener('click', updateBtn);
@@ -22,8 +26,17 @@
     //         btn.value = 'Démarrer la machine';
     //         txt.textContent = 'La machine est arrêtée.';
     //     }
+
     // }
 
+
+
+
+    // } --> 
+
+
+
+<script type="text/javascript">
 
 
     $( document ).ready(function() {

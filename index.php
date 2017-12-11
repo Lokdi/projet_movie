@@ -1,9 +1,12 @@
-<?php include('inc/fonction.php'); ?>
-<?php include('inc/pdo.php'); ?>
+<?php
+include('conf.php');
+// session_start();
+// include('inc/pdo.php');
+?>
 <?php
 //declare ma requete
-include('conf.php');
-
+// debug($_SESSION);
+// debug($_COOKIE);
 if (!empty($_POST['submit'])) {
 
   $sql= "";
@@ -83,7 +86,7 @@ $idMovies = $query->fetchAll();
   </div>
 </div>
 
-
+<a href="deco.php">Deconnecter</a>
 <div class="hidden">
 <div class="form">
   <form action="" method="post" id="formulaire">

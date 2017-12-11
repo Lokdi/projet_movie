@@ -1,5 +1,6 @@
 <?php
-include('conf.php');
+// include('conf.php');
+include('inc/pdo.php');
 include('inc/fonctions.php');
 // session_start();
 
@@ -35,7 +36,7 @@ if (count($errors) == 0) {
       $_SESSION['user']['pseudo'] = $loginVerif['pseudo'];
       $_SESSION['user']['email'] = $loginVerif['email'];
       header('Location: index.php');
-    debug($_SESSION);
+    // debug($_SESSION);
 
   }
 
