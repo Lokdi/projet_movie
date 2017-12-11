@@ -1,9 +1,10 @@
 @import url("normalize.css") screen;
-*{
+* {
   text-decoration: none;
 }
-.hidden{
-  display:none;
+
+.hidden {
+  display: none;
 }
 
 body {
@@ -53,7 +54,9 @@ nav ul {
 nav ul li {
   float: left;
   height: 25px;
-  background: #ffcc66 url('../img/motif-fd-btn-nav.png') repeat-x ;
+  background: #c6932d;
+  /*background: #ffcc66 url('../img/motif-fd-btn-nav.png') repeat-x ;*/
+  color: black;
   padding: 0px 10px;
   margin-right: 10px;
   list-style-type: none;
@@ -93,7 +96,7 @@ a {
   /*background: url('../img/dark-metal-texture.jpg');*/
   /*background-repeat: no-repeat;
   background-size: cover;*/
-  background: rgba(22, 81, 135, 0.75);
+  background: rgba(149, 0, 0, 0.75);
 }
 
 #content {
@@ -183,7 +186,7 @@ border-color: white;
 
 #ecranfilms {
   width: 980px;
-  height: 688px;
+  height: 678px;
   background-color: black;
   border-width: 5px;
   border-color: #ffcc66;
@@ -202,9 +205,48 @@ border-color: white;
 
 }
 
-p.titlefilm {
+.movie {
+  position: relative;
+  margin-top: 5px;
+}
+
+div.titlefilm {
+  position: absolute;
+  display: table-cell;
+  top: 280px;
   width: 220px;
-  height: 40px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1em;
+  text-align: center;
+  color: white;
+  display: flex; /* contexte sur le parent */
+  flex-direction: column; /* direction d'affichage verticale */
+  justify-content: center; /* alignement vertical */
+  border-top: 1px solid grey;
+}
+
+div.titlefilm p {
+  text-decoration: none;
+  vertical-align: middle;
+  color: white;
+  padding: 4px;
+}
+
+div.titlefilm a {
+  text-decoration: none;
+  color: white;
+}
+
+div.titlefilm a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.imagefilm {
+  width: 220px;
+  height: 330px;
 }
 
 footer {

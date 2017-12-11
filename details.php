@@ -1,7 +1,5 @@
 <?php
-include('inc/pdo.php');
-include('inc/fonction.php');
-
+include('conf.php');
 if (!empty($_GET['slug'])) {
     $slug = $_GET['slug'];
 } else {
@@ -25,14 +23,20 @@ include('inc/header.php');?>
         <div class="wrap">
 
 
-            <div class="">
+            <div class="liensFilms">
               <p><a href="index.php">retour aux films</a></p>
             </div>
+            <?php if (isLogged()): ?>
+              <div class="">
+                <p><a href="a_voir.php?id=<?php echo $movie['id'];?>">Ajouer ce film a la liste des film a voir</a></p>
+              </div>
+            <?php endif; ?>
+
                 <img src="posters/<?php echo $movie['id']; ?>.jpg" alt="jaquette du film" />
 
                 <p>title : <?php echo $movie['title']; ?></p>
                 <p>year : <?php echo $movie['year']; ?></p>
-                <p>genre : <?php echo $movie['genre']; ?></p>
+                <p>genre : <?php echo $movie['genres']; ?></p>
                 <p>plot : <?php echo $movie['plot']; ?></p>
                 <p>directors : <?php echo $movie['directors']; ?></p>
                 <p>cast : <?php echo $movie['cast']; ?></p>

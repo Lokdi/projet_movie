@@ -1,9 +1,12 @@
-<?php include('inc/fonction.php'); ?>
-<?php include('inc/pdo.php'); ?>
+<?php
+include('conf.php');
+// session_start();
+// include('inc/pdo.php');
+?>
 <?php
 //declare ma requete
-include('conf.php');
-
+// debug($_SESSION);
+// debug($_COOKIE);
 if (!empty($_POST['submit'])) {
 
   $sql= "";
@@ -67,23 +70,25 @@ $idMovies = $query->fetchAll();
   <div id="listefilms">
 
     <?php foreach ($idMovies as $idMovie) { ?>
-    <div class="movie">
-       <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
-         <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
-         <img width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
-         <p class="titlefilm"><?php echo $idMovie['title'] ?></p>
-         <?php } else  { ?>
-         <img width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
-         <p class="titlefilm"><?= $idMovie['title'] ?></p>
-         <?php } ?>
-       </a>
-    </div>
+      <div class="movie">
+         <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
+
+           <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
+           <img class="imagefilm" width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
+           <div class="titlefilm"><p><?php echo $idMovie['title'] ?></p></div>
+
+           <?php } else  { ?>
+           <img class="imagefilm" width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
+           <div class="titlefilm"><p><?= $idMovie['title'] ?></p></div>
+           <?php } ?>
+         </a>
+      </div>
  <?php } ?>
 
   </div>
 </div>
 
-
+<a href="deco.php">Deconnecter</a>
 <div class="hidden">
 <div class="form">
   <form action="" method="post" id="formulaire">

@@ -1,5 +1,7 @@
 <?php
 include('inc/pdo.php');
+include('inc/fonctions.php');
+
 session_start();
 if (!empty($_COOKIE['reconnect']) && !isset($_SESSION['reconnect'])) {
   // debug($_COOKIE);
@@ -18,8 +20,9 @@ if (!empty($_COOKIE['reconnect']) && !isset($_SESSION['reconnect'])) {
     $_SESSION['user']['id'] = $user['id'];
     $_SESSION['user']['role']= $user['role'];
     $_SESSION['user']['pseudo'] = $user['pseudo'];
-    $_SESSION['user']['email'] = $user['email'];
-    debug($_SESSION);
+    // $_SESSION['user']['email'] = $user['email'];
+    $_SESSION['user']['ip'] = $_SERVER['REMOTE_ADDR'];
+    // debug($_SESSION);
     setcookie('reconnect', $user['id'] . '----' . sha1($key), time() + 3600 + 24 * 3, '/', 'localhost', false, true);
   } else {
     setcookie('reconnect','',  time() -3600,'/', 'localhost', false, true);
