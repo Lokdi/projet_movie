@@ -57,7 +57,7 @@ if (!empty($_POST['submit'])) {
   // }
   // $sql .= "ORDER BY rand() LIMIT 10";
 } else {
-  $sql= "SELECT * FROM movies_full ORDER BY rand() LIMIT 10 ";
+  $sql= "SELECT * FROM movies_full ORDER BY rand() LIMIT 100 ";
   $query = $pdo->prepare($sql);
   $query->execute();
   $idMovies = $query->fetchall();
@@ -69,15 +69,11 @@ if (!empty($_POST['submit'])) {
 
 <?php include('inc/header.php'); ?>
 <h1>Accueil</h1>
+<?php foreach ( $idMovies as $idMovie) { ?>
 
+  <a class="linkImage" href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt=""></a>
+<?php } ?>
 
-<a class="link" href="listMovies.php">Liste films à voir</a>
-<br>
-<br>
-<?php foreach ($idMovies as $idMovie) {?>
-    <a class="linkImage" href="details.php?slug=<?php echo $idMovie['slug'];?>"><img src="posters/<?php echo $idMovie['id'] ;?>.jpg" alt="Image du film : <?php echo $idMovie['title'] ;?> . l'année du film : <?php echo $idMovie['year'] ;?>"></a>
-
- <?php } ?>
 
 
 <div class="form">
@@ -87,72 +83,92 @@ if (!empty($_POST['submit'])) {
       <td>
         <label for="checkAll">Tout cocher/décocher</label>
         <input type="checkbox" name="checkAll" id="checkAll">
+            <div class="allInput">
+              <div class="input">
+                <input type="checkbox" name="checkbox" id="action" value="action">
+                <label for="action">Action</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="adventure" value="adventure">
+                <label for="adventure">Adventure</label>
+              <br>
 
-        <label for="action">Action</label>
-        <input type="checkbox" name="checkbox" id="action" value="action">
+                <input type="checkbox" name="checkbox" id="animation" value="animation">
+                <label for="animation">Animation</label>
+              <br>
 
-        <label for="adventure">Adventure</label>
-        <input type="checkbox" name="checkbox" id="adventure" value="adventure">
+                <input type="checkbox" name="checkbox" id="biography" value="biography">
+                <label for="biography">Biography</label>
+              <br>
 
-        <label for="animation">Animation</label>
-        <input type="checkbox" name="checkbox" id="animation" value="animation">
+                <input type="checkbox" name="checkbox" id="comedy" value="comedy">
+                <label for="comedy">Comedy</label>
+              <br>
 
-        <label for="biography">Biography</label>
-        <input type="checkbox" name="checkbox" id="biography" value="biography">
+                <input type="checkbox" name="checkbox" id="crime" value="crime">
+                <label for="crime">Crime</label>
+              <br>
 
-        <label for="comedy">Comedy</label>
-        <input type="checkbox" name="checkbox" id="comedy" value="comedy">
+                <input type="checkbox" name="checkbox" id="documentary" value="documentary">
+                <label for="documentary">Documentary</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="drama" value="drama">
+                <label for="drama">Drama</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="family" value="family">
+                <label for="family">Family</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="fantasy" value="fantasy">
+                <label for="fantasy">Fantasy</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="film_noir" value="film_noir">
+                <label for="film_noir">Film-Noir</label>
 
-        <label for="crime">Crime</label>
-        <input type="checkbox" name="checkbox" id="crime" value="crime">
+              </div>
+              <div class="input">
+                <input type="checkbox" name="checkbox" id="history" value="history">
+                <label for="history">History</label>
+              <br>
 
-        <label for="documentary">Documentary</label>
-        <input type="checkbox" name="checkbox" id="documentary" value="documentary">
+                <input type="checkbox" name="checkbox" id="horror" value="horror">
+                <label for="horror">Horror</label>
+              <br>
 
-        <label for="drama">Drama</label>
-        <input type="checkbox" name="checkbox" id="drama" value="drama">
+                <input type="checkbox" name="checkbox" id="musical" value="musical">
+                <label for="musical">Musical</label>
+              <br>
 
-        <label for="family">Family</label>
-        <input type="checkbox" name="checkbox" id="family" value="family">
+                <input type="checkbox" name="checkbox" id="mystery" value="mystery">
+                <label for="mystery">Mystery</label>
+              <br>
 
-        <label for="fantasy">Fantasy</label>
-        <input type="checkbox" name="checkbox" id="fantasy" value="fantasy">
+                <input type="checkbox" name="checkbox" id="short" value="short">
+                <label for="short">Short</label>
+              <br>
 
-        <label for="film_noir">Film-Noir</label>
-        <input type="checkbox" name="checkbox" id="film_noir" value="film_noir">
+                <input type="checkbox" name="checkbox" id="sci_fi" value="sci_fi">
+                <label for="sci_fi">Sci-Fi</label>
+              <br>
 
-        <label for="history">History</label>
-        <input type="checkbox" name="checkbox" id="history" value="history">
+                <input type="checkbox" name="checkbox" id="sport" value="sport">
+                <label for="sport">Sport</label>
+              <br>
 
-        <label for="horror">Horror</label>
-        <input type="checkbox" name="checkbox" id="horror" value="horror">
+                <input type="checkbox" name="checkbox" id="thriller" value="thriller">
+                <label for="thriller">Thriller</label>
+              <br>
 
-        <label for="musical">Musical</label>
-        <input type="checkbox" name="checkbox" id="musical" value="musical">
+                <input type="checkbox" name="checkbox" id="romance" value="romance">
+                <label for="romance">Romance</label>
+              <br>
 
-        <label for="mystery">Mystery</label>
-        <input type="checkbox" name="checkbox" id="mystery" value="mystery">
+                <input type="checkbox" name="checkbox" id="war" value="war">
+                <label for="war">War</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="western" value="western">
+                <label for="western">Western</label>
 
-        <label for="short">Short</label>
-        <input type="checkbox" name="checkbox" id="short" value="short">
-
-        <label for="sci_fi">Sci-Fi</label>
-        <input type="checkbox" name="checkbox" id="sci_fi" value="sci_fi">
-
-        <label for="sport">Sport</label>
-        <input type="checkbox" name="checkbox" id="sport" value="sport">
-
-        <label for="thriller">Thriller</label>
-        <input type="checkbox" name="checkbox" id="thriller" value="thriller">
-
-        <label for="romance">Romance</label>
-        <input type="checkbox" name="checkbox" id="romance" value="romance">
-
-        <label for="war">War</label>
-        <input type="checkbox" name="checkbox" id="war" value="war">
-
-        <label for="western">Western</label>
-        <input type="checkbox" name="checkbox" id="western" value="western">
+              </div>
+            </div>
       </td>
     </tr>
   </table>

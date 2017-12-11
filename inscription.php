@@ -8,7 +8,7 @@ if(!empty($_POST['submitinscription'])) {
     // protection XSS
     $pseudo = trim(strip_tags($_POST['pseudo']));
     $email  = trim(strip_tags($_POST['email']));
-    $password1  = trim(strip_tags($_POST['pass']));
+    $pass  = trim(strip_tags($_POST['pass']));
 
     // GESTION DES ERRORS
     // Error Pseudo
@@ -55,18 +55,26 @@ if(!empty($_POST['submitinscription'])) {
                    $errors['email'] = 'Cette adresse e-mail existe déjà.';
                 }
         }
+
+//==============================================================================
     // Error  password
-         if($password1 != $password2) {
-          $errors['pass'] = 'Les mots de passes ne sont pas identiques.';
-        }
-        elseif(strlen($password1) <= 5) {
-          $errors['pass'] = 'Votre mot de passe doit faire plus de 5 caractères.';
+// validation de formulaire à partir de $password
+    if(!empty($pass)) {
+        if(strlen($pass) < 6) {
+            $errors['pass'] = 'Insuffisant minimum 6 caracteres.';
+        } elseif(strlen($pass) > 255) {
+            $errors['pass'] = 'Nombre de caracteres trop grand.';
+        } else {
+            $errors['pass'] = 'Veuillez renseigner votre password';
         }
 
+}
+
+//==============================================================================
         // Si pas d'erreur => creation du compte
         if(count($errors) == 0) {
             // hash password
-            $hashedPassword = password_hash($password1, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 
             // creation du token
             $token = generateRandomString(50);
@@ -116,9 +124,9 @@ include('inc/header.php'); ?>
             </div>
 
             <div class="form-group">
-                <label for="password1">Password*</label>
-                <span class="error"><?php if(!empty($errors['password'])) { echo $errors['password']; } ?></span>
-                <input type="text" name="password1" id="password1" class="form-control" value="<?php if(!empty($_POST['password1'])) { echo $_POST['password1']; } ?>" />
+                <label for="pass">Password*</label>
+                <span class="error"><?php if(!empty($errors['pass'])) { echo $errors['pass']; } ?></span>
+                <input type="text" name="pass" id="pass" class="form-control" value="<?php if(!empty($_POST['pass'])) { echo $_POST['pass']; } ?>" />
             </div>
 
             <input type="submit" name="submitinscription" value="Je m'inscris" class="btn btn-default" />
