@@ -45,7 +45,7 @@ $films = $query->fetchAll();
       <td><?php echo $film['title'] ?></td>
       <td><?php echo $film['year'] ?></td>
       <td><?php echo $film['rating'] ?></td>
-      <td><a href="details.php?slug=<?php echo $film['slug'];?>">Voir </a><a href="editMovie.php?id=<?php echo $film['id'];?>">Modifier </a><a href="effacer">Effacer </a></td>
+      <td><a href="details.php?slug=<?php echo $film['slug'];?>">Voir sur le site </a><a href="editMovie.php?id=<?php echo $film['id'];?>"> Modifier </a><a href="effacer"> Effacer </a></td>
     </tr>
       <?php endforeach; ?>
   </tbody>

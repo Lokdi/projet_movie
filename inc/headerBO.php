@@ -8,9 +8,13 @@
     <title><?= $title ?></title>
   </head>
   <body>
-    <header>
-    </header>
+
     <div id="wrapper">
-      <div class="wrap">
-      </div>
-      <div id="content">
+            <header>
+                <div class="wrap">
+
+
+                </div>
+            </header>
+        <div id="contentBack">
+                <div class="wrap">
