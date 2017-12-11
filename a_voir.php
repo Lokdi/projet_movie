@@ -28,6 +28,7 @@ if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
   }
 
 }
+include('inc/header.php');
 // else {
 //   header('Location:404.php');
 // }
@@ -39,8 +40,21 @@ $avoir = $query->fetchAll();
 
 if (!empty($avoir)) {
   debug($avoir);
+?>
+<div class="my-rating-8"></div>
+
+ <form class="" action="" method="post">
+  <input type="hidden" id="rating" name="rating" value="" class="live-rating">
+  <input type="submit" name="submit" value="Mettre la note">
+</form>
+<?php if (!empty($_POST['submit'])) {
+
+} ?>
+<?php
 } else {
   echo 'Liste vide';
-}
+} ?>
 
-?>
+<?php include('inc/footer.php'); ?>
+
+<!-- ?> -->
