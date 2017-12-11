@@ -2,6 +2,9 @@
 *{
   text-decoration: none;
 }
+.hidden{
+  display:none;
+}
 
 body {
   background: rgb(46,7,6) url('../img/motif-rideaux-cinema-24b.png') repeat-x ;
@@ -197,6 +200,11 @@ border-color: white;
   background: black url('../img/fd-ecran-deg-jaune-noir.png') repeat-x ;
   margin: 0 auto;
 
+}
+
+p.titlefilm {
+  width: 220px;
+  height: 40px;
 }
 
 footer {

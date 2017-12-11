@@ -70,15 +70,16 @@ else {
             $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 
             // creation du token
-            // $token = generateRandomString(50);
+            $token = generateRandomString(50);
                 // autre method creation token
 
             // creation compte => insert dans BDD
-            $sql = "INSERT INTO users (pseudo, email, pass, created_at, role) VALUES(:pseudo, :email, :pass, NOW(),'user')";
+            $sql = "INSERT INTO users (pseudo, email, pass, created_at, role, token) VALUES(:pseudo, :email, :pass, NOW(),'user', :token)";
             $query = $pdo->prepare($sql);
                 $query->bindValue(':pseudo',$pseudo, PDO::PARAM_STR);
                 $query->bindValue(':email',$email, PDO::PARAM_STR);
                 $query->bindValue(':pass',$hashedPassword, PDO::PARAM_STR);
+                $query->bindValue(':token',$token, PDO::PARAM_STR);
                 // $smtp->bindValue(':token',$token, PDO::PARAM_STR);
                 $query->execute();
 

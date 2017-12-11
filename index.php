@@ -2,31 +2,8 @@
 <?php include('inc/pdo.php'); ?>
 <?php
 //declare ma requete
-session_start();
-if (!empty($_COOKIE['reconnect']) && !isset($_SESSION['reconnect'])) {
-  debug($_COOKIE);
-  echo 'salut';
-  $auth = $_COOKIE['reconnect'];
-  $auth = explode('----', $auth);
-  $id = $auth[0];
-  $sql = "SELECT * FROM users WHERE id = :id";
-  $query = $pdo->prepare($sql);
-  $query->bindValue(':id',$id, PDO::PARAM_STR);
-  $query->execute();
-  $user = $query->fetch();
+include('conf.php');
 
-  $key = sha1($user['pseudo'] . $user['pass'] . $_SERVER['REMOTE_ADDR']);
-  if ($key == $auth[1]) {
-    $_SESSION['user']['id'] = $user['id'];
-    $_SESSION['user']['role']= $user['role'];
-    $_SESSION['user']['pseudo'] = $user['pseudo'];
-    $_SESSION['user']['email'] = $user['email'];
-    debug($_SESSION);
-    setcookie('reconnect', $user['id'] . '----' . sha1($key), time() + 3600 + 24 * 3, '/', 'localhost', false, true);
-  } else {
-    setcookie('reconnect','',  time() -3600,'/', 'localhost', false, true);
-  }
-}
 if (!empty($_POST['submit'])) {
 
   $sql= "";
@@ -58,64 +35,33 @@ if (!empty($_POST['submit'])) {
         $sql .= " AND year BETWEEN '$years1' AND '$years2'";
       }
 
-      $sql .= "ORDER BY rand() LIMIT 10";
+      $sql .= "ORDER BY rand() LIMIT 8";
+
+} elseif (!empty($_POST['search'])) {
+  $search = trim($_POST['search']);
+
+  $sql= "SELECT * FROM movies_full WHERE 1 = 1
+        AND title LIKE '%".trim($search)."%'
+        OR directors LIKE '%".trim($search)."%'
+        OR cast LIKE '%".trim($search)."%'
+        ORDER BY rand() LIMIT 8";
+  // debug($idMovies);
+
+// si pas de recherche, ni de recherche avancée, alors on fait une requête générale
 } else {
+
   $sql= "SELECT * FROM movies_full ORDER BY rand() LIMIT 8 ";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $idMovies = $query->fetchall();
+
 }
 
 $query = $pdo->prepare($sql);
 $query->execute();
 $idMovies = $query->fetchAll();
-// debug($)
-// echo $_POST['checkbox'];
 
-// if (!empty($_POST['popularity'])) {
-//
-//     $popularity = $_POST['popularity'];
-//     $popularity = explode('-', $popularity);
-//
-//     $popularity1 = $popularity[0];
-//     $popularity2 = $popularity[1];
-//
-//     $sql .= " AND popularity BETWEEN :popularity1 AND :popularity2";
-//     $query = $pdo->prepare($sql);
-//     $query->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
-//     $query->bindValue(':popularity1', $popularity1, PDO::PARAM_INT);
-//     $query->bindValue(':popularity2', $popularity2, PDO::PARAM_INT);
-//     $query->execute();
-//     $idMovies = $query->fetchAll();
-//   }
-//
-// if (!empty($_POST['popularity']) && !empty($_POST['years'])) {
-//   $years = $_POST['years'];
-//
-//   $years = explode('-', $years);
-//
-//   $years1 = $years[0];
-//   $years2 = $years[1];
-//
-//   $popularity1 = $popularity[0];
-//   $popularity2 = $popularity[1];
-//
-//   $sql = "SELECT * FROM movies_full WHERE genres LIKE :type AND year BETWEEN :years1 AND :years2 AND  popularity BETWEEN :popularity1 AND :popularity2";
-//   $requete = $pdo->prepare($sql); // prepare requete
-//   $requete->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
-//   $requete->bindValue(':years1', $years1, PDO::PARAM_INT);
-//   $requete->bindValue(':years2', $years2, PDO::PARAM_INT);
-//   $requete->bindValue(':popularity1', $popularity1, PDO::PARAM_INT);
-//   $requete->bindValue(':popularity2', $popularity2, PDO::PARAM_INT);
-//   $requete->execute(); // execute requete
-//   $films = $requete->fetchAll(); //On recupere sous forme de tableau multidimensionel
-//
-//   // debug($films);
-// }
-// $sql .= "ORDER BY rand() LIMIT 10";
 ?>
 
 <?php include('inc/header.php'); ?>
+
 
 <div id="ecranfilms">
   <div id="listefilms">
@@ -125,10 +71,10 @@ $idMovies = $query->fetchAll();
        <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
          <?php if (file_exists("posters/".$idMovie['id'].'.jpg') === TRUE) { ?>
          <img width="220" height="330" src="posters/<?= $idMovie['id']; ?>.jpg" alt="Affiche du film : <?= $idMovie['title'];?>, sorti en : <?= $idMovie['year'];?>">
-         <h4><?php echo $idMovie['title'] ?></h4>
+         <p class="titlefilm"><?php echo $idMovie['title'] ?></p>
          <?php } else  { ?>
          <img width="220" height="330" src="./assets/img/sans-couv-220x330px.png" alt="Aucune image disponible">
-         <h4><?= $idMovie['title'] ?></h4>
+         <p class="titlefilm"><?= $idMovie['title'] ?></p>
          <?php } ?>
        </a>
     </div>
@@ -137,79 +83,101 @@ $idMovies = $query->fetchAll();
   </div>
 </div>
 
+
+<div class="hidden">
 <div class="form">
-  <form action="" method="post">
+  <form action="" method="post" id="formulaire">
   <table id="tab1">
     <tr>
       <td>
         <label for="checkAll">Tout cocher/décocher</label>
         <input type="checkbox" name="checkAll" id="checkAll">
+            <div class="allInput">
+              <div class="input">
+                <input type="checkbox" name="checkbox" id="action" value="action">
+                <label for="action">Action</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="adventure" value="adventure">
+                <label for="adventure">Adventure</label>
+              <br>
 
-        <label for="action">Action</label>
-        <input type="checkbox" name="checkbox" id="action" value="action">
+                <input type="checkbox" name="checkbox" id="animation" value="animation">
+                <label for="animation">Animation</label>
+              <br>
 
-        <label for="adventure">Adventure</label>
-        <input type="checkbox" name="checkbox" id="adventure" value="adventure">
+                <input type="checkbox" name="checkbox" id="biography" value="biography">
+                <label for="biography">Biography</label>
+              <br>
 
-        <label for="animation">Animation</label>
-        <input type="checkbox" name="checkbox" id="animation" value="animation">
+                <input type="checkbox" name="checkbox" id="comedy" value="comedy">
+                <label for="comedy">Comedy</label>
+              <br>
 
-        <label for="biography">Biography</label>
-        <input type="checkbox" name="checkbox" id="biography" value="biography">
+                <input type="checkbox" name="checkbox" id="crime" value="crime">
+                <label for="crime">Crime</label>
+              <br>
 
-        <label for="comedy">Comedy</label>
-        <input type="checkbox" name="checkbox" id="comedy" value="comedy">
+                <input type="checkbox" name="checkbox" id="documentary" value="documentary">
+                <label for="documentary">Documentary</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="drama" value="drama">
+                <label for="drama">Drama</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="family" value="family">
+                <label for="family">Family</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="fantasy" value="fantasy">
+                <label for="fantasy">Fantasy</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="film_noir" value="film_noir">
+                <label for="film_noir">Film-Noir</label>
 
-        <label for="crime">Crime</label>
-        <input type="checkbox" name="checkbox" id="crime" value="crime">
+              </div>
+              <div class="input">
+                <input type="checkbox" name="checkbox" id="history" value="history">
+                <label for="history">History</label>
+              <br>
 
-        <label for="documentary">Documentary</label>
-        <input type="checkbox" name="checkbox" id="documentary" value="documentary">
+                <input type="checkbox" name="checkbox" id="horror" value="horror">
+                <label for="horror">Horror</label>
+              <br>
 
-        <label for="drama">Drama</label>
-        <input type="checkbox" name="checkbox" id="drama" value="drama">
+                <input type="checkbox" name="checkbox" id="musical" value="musical">
+                <label for="musical">Musical</label>
+              <br>
 
-        <label for="family">Family</label>
-        <input type="checkbox" name="checkbox" id="family" value="family">
+                <input type="checkbox" name="checkbox" id="mystery" value="mystery">
+                <label for="mystery">Mystery</label>
+              <br>
 
-        <label for="fantasy">Fantasy</label>
-        <input type="checkbox" name="checkbox" id="fantasy" value="fantasy">
+                <input type="checkbox" name="checkbox" id="short" value="short">
+                <label for="short">Short</label>
+              <br>
 
-        <label for="film_noir">Film-Noir</label>
-        <input type="checkbox" name="checkbox" id="film_noir" value="film_noir">
+                <input type="checkbox" name="checkbox" id="sci_fi" value="sci_fi">
+                <label for="sci_fi">Sci-Fi</label>
+              <br>
 
-        <label for="history">History</label>
-        <input type="checkbox" name="checkbox" id="history" value="history">
+                <input type="checkbox" name="checkbox" id="sport" value="sport">
+                <label for="sport">Sport</label>
+              <br>
 
-        <label for="horror">Horror</label>
-        <input type="checkbox" name="checkbox" id="horror" value="horror">
+                <input type="checkbox" name="checkbox" id="thriller" value="thriller">
+                <label for="thriller">Thriller</label>
+              <br>
 
-        <label for="musical">Musical</label>
-        <input type="checkbox" name="checkbox" id="musical" value="musical">
+                <input type="checkbox" name="checkbox" id="romance" value="romance">
+                <label for="romance">Romance</label>
+              <br>
 
-        <label for="mystery">Mystery</label>
-        <input type="checkbox" name="checkbox" id="mystery" value="mystery">
+                <input type="checkbox" name="checkbox" id="war" value="war">
+                <label for="war">War</label>
+              <br>
+                <input type="checkbox" name="checkbox" id="western" value="western">
+                <label for="western">Western</label>
 
-        <label for="short">Short</label>
-        <input type="checkbox" name="checkbox" id="short" value="short">
-
-        <label for="sci_fi">Sci-Fi</label>
-        <input type="checkbox" name="checkbox" id="sci_fi" value="sci_fi">
-
-        <label for="sport">Sport</label>
-        <input type="checkbox" name="checkbox" id="sport" value="sport">
-
-        <label for="thriller">Thriller</label>
-        <input type="checkbox" name="checkbox" id="thriller" value="thriller">
-
-        <label for="romance">Romance</label>
-        <input type="checkbox" name="checkbox" id="romance" value="romance">
-
-        <label for="war">War</label>
-        <input type="checkbox" name="checkbox" id="war" value="war">
-
-        <label for="western">Western</label>
-        <input type="checkbox" name="checkbox" id="western" value="western">
+              </div>
+            </div>
       </td>
     </tr>
   </table>
@@ -235,8 +203,10 @@ $idMovies = $query->fetchAll();
 
   <input type="submit" name="submit" value="Envoyer">
   </form>
-
 </div>
+</div>
+
+<button class="nohidden" type="button" name="button" href="#formulaire">Filtrer</button>
 <?php
 // echo  $_POST['date1'] .'-'. $_POST['date2'];
 // echo $_POST['popularity'];
