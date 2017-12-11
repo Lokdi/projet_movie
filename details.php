@@ -1,4 +1,5 @@
 <?php
+
 include('inc/pdo.php');
 include('inc/fonction.php');
 
@@ -25,11 +26,14 @@ include('inc/header.php');?>
         <div class="wrap">
 
 
-            <div class="">
+            <div class="liensFilms">
               <p><a href="index.php">retour aux films</a></p>
             </div>
+            <div class="liensFilms">
+              <p><a href="voirfilms.php">films à voir</a></p>
+            </div>
                 <img src="posters/<?php echo $movie['id']; ?>.jpg" alt="jaquette du film" />
-                
+
                 <p>title : <?php echo $movie['title']; ?></p>
                 <p>year : <?php echo $movie['year']; ?></p>
                 <p>genre : <?php echo $movie['genre']; ?></p>
