@@ -23,13 +23,13 @@ include('inc/header.php');?>
         <div class="wrap">
 
 
-            <div class="">
+            <div class="liensFilms">
               <p><a href="index.php">retour aux films</a></p>
             </div>
             <?php if (isLogged()): ?>
               <div class="">
                 <p><a href="a_voir.php?id=<?php echo $movie['id'];?>">Ajouer ce film a la liste des film a voir</a></p>
-              </div>  
+              </div>
             <?php endif; ?>
 
                 <img src="posters/<?php echo $movie['id']; ?>.jpg" alt="jaquette du film" />

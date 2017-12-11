@@ -6,24 +6,24 @@ function debug($tableau){
   echo '</pre>';
 }
 
-function pagination($page,$limite,$count, $varANourir, $nbPages, $page){
-  if ($page != 1) {
-    echo'<li class="page-item"><a class="page-link" href="index.php?page='.($page - 1).'">Page precedente</a></li>';
-  }
-
-  for($i=1; $i<=$nbPages; $i++){
-      if($i==$page)
-        $varANourir  .= '<li class="page-item"><a class="page-link">'.$i.'</a></li>';
-      else
-        $varANourir  .= '<li class="page-item"><a class="page-link" href="index.php?page='.$i.'">'.$i.'</a></li>';
-    }
-    echo $varANourir;
-
-    if ($page*$limite < $count) {
-      echo '<li class="page-item"><a class="page-link" href="index.php?page='.($page + 1).'">Page Suivante</a></li>';
-    }
-// Necessite bootstrap
-}
+// function pagination($page,$limite,$count, $varANourir, $nbPages, $page){
+//   if ($page != 1) {
+//     echo'<li class="page-item"><a class="page-link" href="index.php?page='.($page - 1).'">Page precedente</a></li>';
+//   }
+//
+//   for($i=1; $i<=$nbPages; $i++){
+//       if($i==$page)
+//         $varANourir  .= '<li class="page-item"><a class="page-link">'.$i.'</a></li>';
+//       else
+//         $varANourir  .= '<li class="page-item"><a class="page-link" href="index.php?page='.$i.'">'.$i.'</a></li>';
+//     }
+//     echo $varANourir;
+//
+//     if ($page*$limite < $count) {
+//       echo '<li class="page-item"><a class="page-link" href="index.php?page='.($page + 1).'">Page Suivante</a></li>';
+//     }
+// // Necessite bootstrap
+// }
 
 function isLogged(){
   if (!empty($_SESSION['user'])) {
