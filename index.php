@@ -87,9 +87,7 @@ $idMovies = $query->fetchAll();
 
   </div>
 </div>
-<?php if (isLogged()): ?>
-  <a href="deco.php">Deconnecter</a>
-<?php endif; ?>
+
 <div class="hidden">
   <div class="form">
     <form action="" method="post" id="formfiltrage">
