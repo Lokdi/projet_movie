@@ -20,6 +20,10 @@
   display: none;
 }
 
+#formFiltrage {
+  display: none;
+}
+
 body {
   background: rgb(46,7,6) url('../img/motif-rideaux-cinema-24b.png') repeat-x ;
   font-family: 'Playfair Display', serif;
@@ -93,9 +97,14 @@ nav ul li a {
   font-size: 1em;
   text-align: center;
   padding-top: 3px;
-  color: white;
+  color: black;
   font-family: 'Montserrat', Arial, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, sans-serif;
   /* text-transform: uppercase; */
+}
+
+nav ul li a:hover, nav ul li a:active, nav ul li a:visited {
+  color: white;
+  text-decoration: none;
 }
 
 #filtre {
