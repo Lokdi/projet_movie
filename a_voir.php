@@ -33,6 +33,12 @@ include('inc/header.php');
 //   header('Location:404.php');
 // }
 $id_user = $_SESSION['user']['id'];
+////////////////////////////////////////////////////////////////////////////////////
+// FAIRE une jointure pour aller chercher le titre du film ++++
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
 $sql = "SELECT * FROM notes WHERE id_user = $id_user ORDER BY created_at DESC";
 $query = $pdo->prepare($sql); //je les prepares
 $query->execute(); //j'execute
@@ -48,7 +54,9 @@ if (!empty($avoir)) {
   <input type="submit" name="submit" value="Mettre la note">
 </form>
 <?php if (!empty($_POST['submit'])) {
-
+  if (condition) {
+    # code...
+  }
 } ?>
 <?php
 } else {

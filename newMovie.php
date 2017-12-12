@@ -76,7 +76,7 @@ print_r($_SESSION['user']['role']);
 
                     if(count($errors) == 0) {
                         $success = true;
-                        $sql = "INSERT INTO movies_full (title, content, auteur, created_at, update_at, status) VALUES (:title, :content, :pseudo, NOW(), NOW(), :status)";
+                        $sql = "INSERT INTO movies_full (title, content, auteur, created_at, update_at, status) VALUES (:nameFilm, :content, :pseudo, NOW(), NOW(), :status)";
                         $query = $pdo->prepare($sql);
                         $query ->bindValue (':slug', $slug, PDO::PARAM_STR);
                         $query ->bindValue (':nameFilm', $nameFilm, PDO::PARAM_STR);
