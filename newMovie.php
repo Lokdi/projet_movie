@@ -26,13 +26,13 @@ print_r($_SESSION['user']['role']);
           //////////////////////////////////////////////////
           //// VERIFICATIONS AVEC DE JOLIES FONCTIONS
           //////////////////////////////////////////////////
-          $errors = testLongueurChamps($errors, 'slug', $slug, 4, 50, $required = true);
-          $errors = testLongueurChamps($errors, 'title', $nameFilm, 4, 50, $required = true);
-          $errors = testLongueurChamps($errors, 'genre', $genre, 4, 50, $required = true);
-          $errors = testLongueurChamps($errors, 'plot', $plot, 4, 50, $required = true);
-          $errors = testLongueurChamps($errors, 'directors', $directors, 4, 50, $required = true);
-          $errors = testLongueurChamps($errors, 'cast', $cast, 4, 50, $required = true);
-          $errors = testLongueurChamps($errors, 'writers', $writers, 4, 50, $required = true);
+          $errors = testLongueurChamps($errors, 'slug', $slug, 4, 50);
+          $errors = testLongueurChamps($errors, 'title', $nameFilm, 4, 50);
+          $errors = testLongueurChamps($errors, 'genre', $genre, 4, 50);
+          $errors = testLongueurChamps($errors, 'plot', $plot, 4, 50);
+          $errors = testLongueurChamps($errors, 'directors', $directors, 4, 50);
+          $errors = testLongueurChamps($errors, 'cast', $cast, 4, 50);
+          $errors = testLongueurChamps($errors, 'writers', $writers, 4, 50);
           //////////////////////////////////////////////////
           //// VERIFICATION annee
           //////////////////////////////////////////////////
@@ -74,10 +74,9 @@ print_r($_SESSION['user']['role']);
             $errors['popularity'] = ' Merci de renseigner la popularité ';
           }
 
-///
                     if(count($errors) == 0) {
                         $success = true;
-                        $sql = "INSERT INTO movies_full (slug, title, year, genres, plot, directors, cast, writers, runtime, rating, popularity, modified, created) VALUES (:slug, :nameFilm, :year, :genre, :plot, :directors, :cast, :writers, :runtime, :rating, :popularity, NOW(), NOW())";
+                        $sql = "INSERT INTO movies_full (title, content, auteur, created_at, update_at, status) VALUES (:nameFilm, :content, :pseudo, NOW(), NOW(), :status)";
                         $query = $pdo->prepare($sql);
                         $query ->bindValue (':slug', $slug, PDO::PARAM_STR);
                         $query ->bindValue (':nameFilm', $nameFilm, PDO::PARAM_STR);

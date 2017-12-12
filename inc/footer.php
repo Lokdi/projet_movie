@@ -2,23 +2,21 @@
       </div>
     </div>
     <footer>
+      <?php if (isOnPage('index.php')): // on affiche le bouton "plus de films" uniquement sur la page d'accueil ?>
       <a href="index.php"><img src="./assets/img/btn-reload.png" alt="Plus de films" /></a>
         <p><a href="index.php">Plus de films</a></p>
+      <?php endif; ?>
     </footer>
     <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.barrating.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-multiselect.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="jquery.star-rating-svg.js"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script type="text/javascript" src="assets/js/rating.js"></script> -->
-
-
-
-
-
 
 
     <!-- // var btn = document.querySelector('input');
@@ -37,10 +35,13 @@
 
     // }
 
+<<<<<<< HEAD
 
 
 
-    // } --> 
+=======
+>>>>>>> 55269717b3ecf3493e7af1f65fc6624f504227cc
+    // } -->
 
 
 
@@ -62,10 +63,10 @@
       }
     });
 
-    $( ".nohidden" ).click(function() {
-      $( ".hidden" ).toggle( "slow" );
+    $( "#btnFiltres" ).click(function() {
+      $( "#formFiltrage" ).toggle( "slow", function() { // Animation complete.
+      });
     });
-
 
     $(".my-rating-8").starRating({
       useFullStars: true,
@@ -85,7 +86,12 @@
 
     });
 
-
+  $('#checkbox[]').multiselect({
+      includeSelectAllOption: true,
+      onSelectAll: function() {
+          alert('onSelectAll triggered!');
+      }
+  });
 
     </script>
   </body>

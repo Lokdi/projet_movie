@@ -4,19 +4,113 @@ include('conf.php');
 // include('inc/pdo.php');
 ?>
 <?php
+// Déclaration de quelques variables
+$title = 'Les Experts du Cinéma - Page d\'accueil';
+
 //declare ma requete
 // debug($_SESSION);
 // debug($_COOKIE);
 if (!empty($_POST['submit'])) {
 
-  $sql= "";
+  $sql = "";
 
   if (!empty($_POST['checkbox'])) {
 
     $type = $_POST['checkbox'];
+    $sql = "SELECT * FROM movies_full WHERE 1 = 1 ";
+    // debug($type);
+    // echo $type[0];
 
-    $sql .= "SELECT * FROM movies_full WHERE 1 = 1 AND genres LIKE '%$type%'";
+    if (!empty($type[0]) && $type[0] == 'action') { // action
+      $sql .= "AND genres LIKE '%$type[0]%'";
+    }
+
+    if (!empty($type[1]) && $type[1] == 'adventure') { // adventure
+      $sql .= "AND genres LIKE '%$type[1]%'";
+    }
+
+    if (!empty($type[2]) && $type[2] == 'animation') { // animation
+      $sql .= "AND genres LIKE '%$type[2]%'";
+    }
+
+    if (!empty($type[3]) && $type[3] == 'biography') { // biography
+      $sql .= "AND genres LIKE '%$type[3]%'";
+    }
+
+    if (!empty($type[4]) && $type[4] == 'comedy') { // comedy
+      $sql .= "AND genres LIKE '%$type[4]%'";
+    }
+
+    if (!empty($type[5]) && $type[5] == 'crime') { // crime
+      $sql .= "AND genres LIKE '%$type[5]%'";
+    }
+
+    if (!empty($type[6]) && $type[6] == 'documentary') { // documentary
+      $sql .= "AND genres LIKE '%$type[6]%'";
+    }
+
+    if (!empty($type[7]) && $type[7] == 'drama') { // drama
+      $sql .= "AND genres LIKE '%$type[7]%'";
+    }
+
+    if (!empty($type[8]) && $type[8] == 'family') { // family
+      $sql .= "AND genres LIKE '%$type[8]%'";
+    }
+
+    if (!empty($type[9]) && $type[9] == 'fantasy') { // fantasy
+      $sql .= "AND genres LIKE '%$type[9]%'";
+    }
+
+    if (!empty($type[10]) && $type[10] == 'film_noir') { // thriller
+      $sql .= "AND genres LIKE '%$type[10]%'";
+    }
+
+    if (!empty($type[11]) && $type[11] == 'history') { // history
+      $sql .= "AND genres LIKE '%$type[11]%'";
+    }
+
+    if (!empty($type[12]) && $type[12] == 'horror') { // horror
+      $sql .= "AND genres LIKE '%$type[12]%'";
+    }
+
+    if (!empty($type[13]) && $type[13] == 'musical') { // musical
+      $sql .= "AND genres LIKE '%$type[13]%'";
+    }
+
+    if (!empty($type[14]) && $type[14] == 'mystery') { // mystery
+      $sql .= "AND genres LIKE '%$type[14]%'";
+    }
+
+    if (!empty($type[15]) && $type[15] == 'short') { // short
+      $sql .= "AND genres LIKE '%$type[15]%'";
+    }
+
+    if (!empty($type[16]) && $type[16] == 'sci_fi') { // sci_fi
+      $sql .= "AND genres LIKE '%$type[16]%'";
+    }
+
+    if (!empty($type[17]) && $type[17] == 'sport') { // sport
+      $sql .= "AND genres LIKE '%$type[17]%'";
+    }
+
+    if (!empty($type[18]) && $type[18] == 'thriller') { // thriller
+      $sql .= "AND genres LIKE '%$type[18]%'";
+    }
+
+    if (!empty($type[19]) && $type[19] == 'romance') { // romance
+      $sql .= "AND genres LIKE '%$type[19]%'";
+    }
+
+    if (!empty($type[20]) && $type[20] == 'war') { // war
+      $sql .= "AND genres LIKE '%$type[20]%'";
+    }
+
+    if (!empty($type[21]) && $type[21] == 'western') { // western
+      $sql .= "AND genres LIKE '%$type[21]%'";
+    }
+
   }
+
   if (!empty($_POST['popularity'])) {
 
       $popularity = $_POST['popularity'];
@@ -57,19 +151,19 @@ if (!empty($_POST['submit'])) {
 
 }
 
+// Exécution de la requête, filtrage et récupération des données des films
 $query = $pdo->prepare($sql);
 $query->execute();
 $idMovies = $query->fetchAll();
 
+// Ici le HTML
 ?>
-
 <?php include('inc/header.php'); ?>
-
 
 <div id="ecranfilms">
   <div id="listefilms">
 
-    <?php foreach ($idMovies as $idMovie) { ?>
+    <?php foreach ($idMovies as $idMovie) { // Affichage des films avec couverture + titre ?>
       <div class="movie">
          <a class="linkImage" href="details.php?slug=<?= $idMovie['slug'];?>">
 
@@ -85,159 +179,6 @@ $idMovies = $query->fetchAll();
       </div>
  <?php } ?>
 
-  </div>
-</div>
-
-<div class="hidden">
-  <div class="form">
-    <form action="" method="post" id="formfiltrage">
-      <table id="tab1">
-        <tr>
-          <td>
-            <select name="selectmutiple" id="selectmutiple" type="select" multiple="multiple">
-              <option type="checkbox" value="">Tous</option>
-              <option value="action">Action</option>
-              <option value="adventure">Aventure</option>
-              <option value="animation">Animation</option>
-              <option value="biography">Biographie</option>
-              <option value="comedy">Comedie</option>
-              <option value="crime">Crime</option>
-              <option value="documentary">Documentaire</option>
-              <option value="drama">Drame</option>
-              <option value="family">Famille</option>
-              <option value="fantasy">Fantasie</option>
-              <option value="film_noir">Film noir</option>
-              <option value="history">Histoire</option>
-              <option value="horror">Horreur</option>
-              <option value="musical">Musical</option>
-              <option value="mystery">Mystère</option>
-              <option value="short">short</option>
-              <option value="sci_fi">Science-fiction</option>
-              <option value="sport">sport</option>
-              <option value="thriller">Policier</option>
-              <option value="romance">Romantique</option>
-              <option value="war">Guerre</option>
-              <option value="western">Western</option>
-
-            </select>
-          </td>
-        </tr>
-        <tr>
-        <tr>
-          <td>
-            <label for="checkAll">Tout cocher/décocher</label>
-            <input type="checkbox" name="checkAll" id="checkAll">
-                <div class="allInput">
-                  <div class="input">
-                    <input type="checkbox" name="checkbox" id="action" value="action">
-                    <label for="action">Action</label>
-                  <br>
-                    <input type="checkbox" name="checkbox" id="adventure" value="adventure">
-                    <label for="adventure">Adventure</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="animation" value="animation">
-                    <label for="animation">Animation</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="biography" value="biography">
-                    <label for="biography">Biography</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="comedy" value="comedy">
-                    <label for="comedy">Comedy</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="crime" value="crime">
-                    <label for="crime">Crime</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="documentary" value="documentary">
-                    <label for="documentary">Documentary</label>
-                  <br>
-                    <input type="checkbox" name="checkbox" id="drama" value="drama">
-                    <label for="drama">Drama</label>
-                  <br>
-                    <input type="checkbox" name="checkbox" id="family" value="family">
-                    <label for="family">Family</label>
-                  <br>
-                    <input type="checkbox" name="checkbox" id="fantasy" value="fantasy">
-                    <label for="fantasy">Fantasy</label>
-                  <br>
-                    <input type="checkbox" name="checkbox" id="film_noir" value="film_noir">
-                    <label for="film_noir">Film-Noir</label>
-
-                  </div>
-                  <div class="input">
-                    <input type="checkbox" name="checkbox" id="history" value="history">
-                    <label for="history">History</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="horror" value="horror">
-                    <label for="horror">Horror</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="musical" value="musical">
-                    <label for="musical">Musical</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="mystery" value="mystery">
-                    <label for="mystery">Mystery</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="short" value="short">
-                    <label for="short">Short</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="sci_fi" value="sci_fi">
-                    <label for="sci_fi">Sci-Fi</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="sport" value="sport">
-                    <label for="sport">Sport</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="thriller" value="thriller">
-                    <label for="thriller">Thriller</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="romance" value="romance">
-                    <label for="romance">Romance</label>
-                  <br>
-
-                    <input type="checkbox" name="checkbox" id="war" value="war">
-                    <label for="war">War</label>
-                  <br>
-                    <input type="checkbox" name="checkbox" id="western" value="western">
-                    <label for="western">Western</label>
-
-                  </div>
-                </div>
-          </td>
-        </tr>
-      </table>
-
-    Années :
-    <select name="years">
-      <option name="" value="">???</option>
-      <option name="1888-1928" value="1888-1928">1888-1928</option>
-      <option name="1928-1968" value="1928-1968">1928-1968</option>
-      <option name="1968-1988" value="1968-1988">1968-1988</option>
-      <option name="1988-2012" value="1988-2012">1988-2012</option>
-    </select>
-
-
-    Popularité :
-    <select name="popularity">
-      <option name="" value="">???</option>
-      <option name="0-25" value="0-25">0-25</option>
-      <option name="25-50" value="25-50">25-50</option>
-      <option name="50-75" value="50-75">50-75</option>
-      <option name="75-100" value="75-100">75-100</option>
-    </select>
-
-    <input type="submit" name="submit" value="Envoyer">
-    </form>
   </div>
 </div>
 
