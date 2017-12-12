@@ -2,7 +2,20 @@
 * {
   text-decoration: none;
 }
-
+/*.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}*/
 .hidden {
   display: none;
 }
@@ -41,7 +54,7 @@ nav {
 nav ul {
   display: flex;
   float: left;
-  width: 330px;
+  /*width: 330px;*/
   height: 40px;
   /*line-height: 40px;*/
   flex-direction: row;
@@ -83,6 +96,13 @@ nav ul li a {
   color: white;
   font-family: 'Montserrat', Arial, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, sans-serif;
   /* text-transform: uppercase; */
+}
+
+#filtre {
+  width: 70px;
+  height: 25px;
+  display: inline-block;
+  float: right;
 }
 
 a {

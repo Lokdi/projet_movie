@@ -2,11 +2,24 @@
 *{
   text-decoration: none;
 }
-
-
+#wrapper {
+    background: rgb(46,7,6) url('../img/motif-rideaux-cinema-24b.png') repeat-x ;
+    font-family: 'Playfair Display', serif;
+}
 header {
-  height: 96px;
-  max-width: 1400px;
+  height: 20px;
+  /*max-width: 1400px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto;*/
+}
+#contentBack {
+background-color: #E9EAEB;
+max-width: 1400px;
+width: 100%;
+margin: 0 auto;
+}
+.wrap {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
 }

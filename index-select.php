@@ -88,41 +88,25 @@ $idMovies = $query->fetchAll();
   </div>
 </div>
 
+<a href="deco.php">Deconnecter</a>
 <div class="hidden">
   <div class="form">
     <form action="" method="post" id="formfiltrage">
+
       <table id="tab1">
         <tr>
           <td>
-            <select name="selectmutiple" id="selectmutiple" type="select" multiple="multiple">
-              <option type="checkbox" value="">Tous</option>
-              <option value="action">Action</option>
-              <option value="adventure">Aventure</option>
-              <option value="animation">Animation</option>
-              <option value="biography">Biographie</option>
-              <option value="comedy">Comedie</option>
-              <option value="crime">Crime</option>
-              <option value="documentary">Documentaire</option>
-              <option value="drama">Drame</option>
-              <option value="family">Famille</option>
-              <option value="fantasy">Fantasie</option>
-              <option value="film_noir">Film noir</option>
-              <option value="history">Histoire</option>
-              <option value="horror">Horreur</option>
-              <option value="musical">Musical</option>
-              <option value="mystery">Mystère</option>
-              <option value="short">short</option>
-              <option value="sci_fi">Science-fiction</option>
-              <option value="sport">sport</option>
-              <option value="thriller">Policier</option>
-              <option value="romance">Romantique</option>
-              <option value="war">Guerre</option>
-              <option value="western">Western</option>
-
+            <select name="toto" id="toto" type="select" multiple size="2">
+              <option value="">Tous</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
             </select>
           </td>
         </tr>
-        <tr>
         <tr>
           <td>
             <label for="checkAll">Tout cocher/décocher</label>
