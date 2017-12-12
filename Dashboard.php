@@ -26,6 +26,8 @@ $films = $query->fetchAll();
 
 <?php include('inc/headerBO.php');?>
 <a href="newMovie.php">Ajout d'un nouveau film</a>
+<br>
+<a href="statsUser.php">Liste des utilisateurs.</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -45,11 +47,9 @@ $films = $query->fetchAll();
       <td><?php echo $film['title'] ?></td>
       <td><?php echo $film['year'] ?></td>
       <td><?php echo $film['rating'] ?></td>
-<<<<<<< HEAD
-      <td><a href="details.php?slug=<?php echo $film['slug'];?>">Voir sur le site </a><a href="editMovie.php?id=<?php echo $film['id'];?>"> Modifier </a><a href="effacer"> Effacer </a></td>
-=======
+
       <td><a href="details.php?slug=<?php echo $film['slug'];?>">Voir </a><a href="editMovie.php?id=<?php echo $film['id'];?>">Modifier </a><a href="delMovie.php?id=<?php echo $film['id'];?>" onclick="return confirm('es-tu sûr?');">Effacer </a></td>
->>>>>>> 541919953d5da77487d88273f618193745850c75
+
     </tr>
       <?php endforeach; ?>
   </tbody>
