@@ -74,9 +74,10 @@ print_r($_SESSION['user']['role']);
             $errors['popularity'] = ' Merci de renseigner la popularité ';
           }
 
+///
                     if(count($errors) == 0) {
                         $success = true;
-                        $sql = "INSERT INTO movies_full (title, content, auteur, created_at, update_at, status) VALUES (:article, :content, :pseudo, NOW(), NOW(), :status)";
+                        $sql = "INSERT INTO movies_full (slug, title, year, genres, plot, directors, cast, writers, runtime, rating, popularity, modified, created) VALUES (:slug, :nameFilm, :year, :genre, :plot, :directors, :cast, :writers, :runtime, :rating, :popularity, NOW(), NOW())";
                         $query = $pdo->prepare($sql);
                         $query ->bindValue (':slug', $slug, PDO::PARAM_STR);
                         $query ->bindValue (':nameFilm', $nameFilm, PDO::PARAM_STR);

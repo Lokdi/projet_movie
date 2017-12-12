@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="./assets/css/styledetails.css"> -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/styledetails.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -24,27 +24,25 @@
         <nav id="navigation">
           <ul>
             <li><a href="index.php" alt="Accueil">Accueil</a></li>
-<<<<<<< HEAD
-            <li><a href="inscription.php" alt="Inscription">Inscription</a></li>
-            <li><a href="connection.php" alt="Connexion">Connexion</a></li>
+
 
             <?php // on affiche le filtre uniquement sur la page d'accueil
             $page = basename($_SERVER["PHP_SELF"]); // echo $page;
             if (!empty($page) && $page == 'index.php' ):
-            ?>
+             ?>
             <li><a href="#formfiltrage" class="nohidden" alt="Filtrer par genre, date et popularité">Filtrer</a></li>
             <?php endif; ?>
 
-=======
             <?php if (!isLogged()): ?>
               <li><a href="inscription.php" alt="Inscription">Inscription</a></li>
               <li><a href="connection.php" alt="Connexion">Connexion</a></li>
             <?php endif; ?>
->>>>>>> a08605faab28c0b5549c122366c2e62e9c1293ec
             <?php if (isLogged()): ?>
               <li><a href="a_voir.php" alt="Liste des films a voir">Liste des films a voir</a></li>
             <?php endif; ?>
-
+            <?php if (isLogged()): ?>
+              <li><a href="deco.php">Deconnecter</a></li>
+            <?php endif; ?>
           </ul>
           <form id="recherche" method="post" action="index.php">
             <input id="search" class="loupe" name="search" type="text" placeholder="Recherche..." required />
