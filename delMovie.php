@@ -10,13 +10,15 @@ if (!empty($_GET['id'])) {
 }else {
   header('Location: dashboard.php');
 }
-$sql = "SELECT * FROM movies_full WHERE id = '$id'";
+$sql = "SELECT * FROM movies_full WHERE id = :id";
 $query = $pdo->prepare($sql);
+$query->bindValue(':id',$id, PDO::PARAM_STR);
 $query->execute();
 $del = $query->fetch();
 if ($del['id'] == $id) {
-  $sql = "DELETE FROM movies_full WHERE id = '$id'";
+  $sql = "DELETE FROM movies_full WHERE id = :id";
   $query = $pdo->prepare($sql);
+  $query->bindValue(':id',$id, PDO::PARAM_STR);
   $query->execute();
   header('Location: dashboard.php');
 

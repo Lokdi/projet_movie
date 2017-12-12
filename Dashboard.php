@@ -35,16 +35,9 @@ $sql = "SELECT count(id) FROM movies_full";
 $query = $pdo->prepare($sql);
 $query->execute();
 $count = $query->fetchColumn();
-// echo $count;
 
 use JasonGrimes\Paginator;
 
-// $totalItems = $count;
-// $itemsPerPage = 100;
-// $currentPage = 1;
-// $urlPattern = '/PHP/movies/projet_movie/dashboard.php/(:num)';
-
-// $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 $paginator = new Paginator($count, 100, $page, '/PHP/movies/projet_movie/dashboard.php?page=(:num)');
 
 
