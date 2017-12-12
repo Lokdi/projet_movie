@@ -35,11 +35,17 @@ include('inc/header.php');
 $id_user = $_SESSION['user']['id'];
 ////////////////////////////////////////////////////////////////////////////////////
 // FAIRE une jointure pour aller chercher le titre du film ++++
+// On prends que ceux qui n'ont pas de note =>   note IS NULL (sql.sh)
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+// $sql = "SELECT * FROM notes WHERE id_user = $id_user";
 
-$sql = "SELECT * FROM notes WHERE id_user = $id_user ORDER BY created_at DESC";
+
+$sql = "SELECT n.id_user AS id_user, mf.title AS title, n.note AS note
+        FROM notes AS n
+        LEFT JOIN movies_full AS mf
+        ON id_user = $id_user AND note IS NULL ORDER BY n.created_at DESC";
 $query = $pdo->prepare($sql); //je les prepares
 $query->execute(); //j'execute
 $avoir = $query->fetchAll();
@@ -54,9 +60,7 @@ if (!empty($avoir)) {
   <input type="submit" name="submit" value="Mettre la note">
 </form>
 <?php if (!empty($_POST['submit'])) {
-  if (condition) {
-    # code...
-  }
+
 } ?>
 <?php
 } else {
