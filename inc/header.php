@@ -33,7 +33,9 @@
               <li><a href="a_voir.php" alt="Liste des films à voir">Films à voir</a></li>
               <li><a href="deco.php" alt="Déconnection">Déconnecter</a></li>
             <?php endif; ?>
-
+            <?php if (isLogged() && $_SESSION['user']['role'] === 'admin'): ?>
+              <li><a href="dashboard.php">Admin</a></li>
+            <?php endif; ?>
             <?php if (isOnPage('index.php')): ?>
               <li><a id="btnFiltres" href="#" alt="Filtrer par genre, date et popularité">Filtrer</a></li>
             <?php endif; ?>

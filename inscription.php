@@ -117,6 +117,17 @@ include('inc/header.php'); ?>
                 <input type="text" name="email" id="email" class="form-control" value="<?php if(!empty($_POST['email'])) { echo $_POST['email']; } ?>" />
             </div>
 
+            <div class="form-group">
+                <label for="pass">Pass*</label>
+                <span class="error"><?php if(!empty($errors['pass'])) { echo $errors['pass']; } ?></span>
+                <input type="text" name="pass" id="pass" class="form-control" value="<?php if(!empty($_POST['pass'])) { echo $_POST['pass']; } ?>" />
+            </div>
+
+            <div class="form-group">
+                <label for="passConfirm">PassConfirm*</label>
+                <span class="error"><?php if(!empty($errors['passConfirm'])) { echo $errors['passConfirm']; } ?></span>
+                <input type="text" name="passConfirm" id="passConfirm" class="form-control" value="<?php if(!empty($_POST['passConfirm'])) { echo $_POST['passConfirm']; } ?>" />
+            </div>
             <input type="submit" name="submitinscription" value="Je m'inscris" class="btn btn-default" />
 
         </form>
