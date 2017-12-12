@@ -31,7 +31,7 @@ if (count($errors) == 0) {
       $_SESSION['user']['role']= $loginVerif['role'];
       $_SESSION['user']['pseudo'] = $loginVerif['pseudo'];
       $_SESSION['user']['ip'] = $_SERVER['SERVER_ADDR'];
-      
+
       setcookie('reconnect', $loginVerif['id'] . '----' . sha1($loginVerif['pseudo'] . $loginVerif['pass'] . $_SERVER['REMOTE_ADDR']), time() + 3600 + 24 * 3, '/', 'localhost', false, true);
       // $_SESSION['user']['email'] = $loginVerif['email'];
       header('Location: index.php');
@@ -41,7 +41,7 @@ if (count($errors) == 0) {
 
 }
 }
-
+include('inc/header.php');
 ?>
 
 <form action="" method="post">

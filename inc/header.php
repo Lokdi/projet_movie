@@ -38,11 +38,10 @@
               <li><a href="connection.php" alt="Connexion">Connexion</a></li>
             <?php endif; ?>
             <?php if (isLogged()): ?>
+              <li><a href="deco.php">Deconnecter</a></li>
               <li><a href="a_voir.php" alt="Liste des films a voir">Liste des films a voir</a></li>
             <?php endif; ?>
-            <?php if (isLogged()): ?>
-              <li><a href="deco.php">Deconnecter</a></li>
-            <?php endif; ?>
+
           </ul>
           <form id="recherche" method="post" action="index.php">
             <input id="search" class="loupe" name="search" type="text" placeholder="Recherche..." required />
